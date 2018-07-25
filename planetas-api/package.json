@@ -1,0 +1,25 @@
+{
+  "name": "planeta-api",
+  "version": "1.0.0",
+  "description": "Game Star Wars",
+  "main": "src/loader.js",
+  "scripts": {
+    "dev": "nodemon",
+    "production": "pm2 start src/loader.js --name planeta-api"
+  },
+  "keywords": [],
+  "author": "Rafael Braga",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-validator": "^5.3.0",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.2.5",
+    "pm2": "^3.0.2",
+    "request": "^2.87.0"
+  }
+}
