@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const planetaSchema = new mongoose.Schema({
    nome:{type: String, require: true, unique: true},
@@ -7,4 +7,4 @@ const planetaSchema = new mongoose.Schema({
    createAt: {type: Date, default: Date.now}
 })
 
-module.exports = mongoose.model('Planeta', planetaSchema);
+export default mongoose.model('Planeta', planetaSchema);

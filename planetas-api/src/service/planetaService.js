@@ -1,7 +1,7 @@
-const _ = require('lodash')
-const Planeta = require('../model/planeta')
-const request = require('request');
-const url = 'https://swapi.co/api/planets/';
+import { _ } from 'lodash';
+import request from 'request';
+import config from 'config';
+import Planeta from '../model/planeta';
 
 /**
  * @api {post} api/planetas Adicionar um planeta
@@ -39,11 +39,11 @@ const url = 'https://swapi.co/api/planets/';
             "__v": ...
  *      }
  */
-add = (req, res) => {
+export const add = (req, res) => {
     Planeta.create(req.body)
     .then((planeta) => res.status(200).json(_.defaults(planeta)))
     .catch((err) => res.status(400).json(err));
-}
+};
 
 /**
  * @api {get} api/planetas Lista Planetas
@@ -82,12 +82,11 @@ add = (req, res) => {
       ]
  *
  */
-planetas = (req, res) => {
-    Planeta.find({}, (err, result) => {
-        if (err) throw err;
-        res.json(_.defaults(result));
-    });
-}
+export const planetas = (req, res) => {
+    Planeta.find({})
+    .then((planeta) => res.status(200).json(_.defaults(planeta)))
+    .catch((err) => res.status(400).json(err));
+};
 
 /**
  * @api {get} api/planetas/findByName/:nome Buscar por nome
@@ -116,14 +115,11 @@ planetas = (req, res) => {
  *    ]
  *
  */
-findByName = (req, res) => {
-    Planeta.find({ nome: req.params.nome }, (err, result) => {
-        if (err) return err;
-
-
-        res.json(_.defaults(result))
-    });
-}
+export const findByName = (req, res) => {
+    Planeta.find({ nome: req.params.nome })
+    .then((planeta) => res.status(200).json(_.defaults(planeta)))
+    .catch((err) => res.status(400).json(err));
+};
 
 /**
  * @api {get} api/planetas/:id Buscar por ID
@@ -149,12 +145,11 @@ findByName = (req, res) => {
             "__v": 0
  *      }
  */
-findById = (req, res) => {
-    Planeta.findOne({_id: req.params._id}, (err, result) => {
-        if (err) throw err;
-        res.json(_.defaults(result));
-    });
-}
+export const findById = (req, res) => {
+    Planeta.findOne({_id: req.params._id})
+    .then((planeta) => res.status(200).json(_.defaults(planeta)))
+    .catch((err) => res.status(400).json(err));
+};
 
 /**
  * @api {delete} api/planetas/:id Deletar por ID
@@ -173,12 +168,8 @@ findById = (req, res) => {
  *    ]
  *
  */
-remove = (req, res) => {
-    Planeta.deleteOne({_id: req.params._id}, (err, result) => {
-        if (err) throw err;
-        res.json(_.defaults(result));
-    });
-}
-
-
-module.exports = { add, planetas, findByName, findById, remove  }
+export const remove = (req, res) => {
+    Planeta.deleteOne({_id: req.params._id})
+    .then((planeta) => res.status(200).json(_.defaults(planeta)))
+    .catch((err) => res.status(400).json(err));
+};

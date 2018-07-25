@@ -1,4 +1,5 @@
 {
   "PORT": 3000,
-  "URI_MONGODB": "mongodb://mongo:27017/planeta-api"
+  "URI_MONGODB": "mongodb://mongo:27017/planeta-api",
+  "URL_SWAPI": "https://swapi.co/api/planets/"
 }

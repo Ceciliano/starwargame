@@ -1,14 +1,14 @@
-const port = 3000
+import bodyParser from 'body-parser';
+import express from 'express';
+import config from 'config';
 
-const bodyParser = require('body-parser')
-const express = require('express')
-const server = express()
+const server = express();
 
-server.use(bodyParser.urlencoded({ extended: true }))
-server.use(bodyParser.json())
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
 
-server.listen(port, function() {
-    console.log(`BACKEND is running on port ${port}.`)
-})
+server.listen(config.PORT, function() {
+    console.log(`BACKEND is running on port ${config.PORT}.` );
+});
 
-module.exports = server
+export default server;
