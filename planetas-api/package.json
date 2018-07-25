@@ -7,14 +7,23 @@
     "dev": "nodemon",
     "production": "pm2 start src/loader.js --name planeta-api"
   },
-  "keywords": [],
-  "author": "Rafael Braga",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ceciliano/montinho.git"
+  },
+  "keywords": [
+    "js",
+    "tdd",
+    "library"
+  ],
+  "author": "Rafael Braga <rafaelp.ceciliano@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.18.3"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "config": "^1.31.0",
     "express": "^4.16.3",
     "express-validator": "^5.3.0",
     "lodash": "^4.17.10",
