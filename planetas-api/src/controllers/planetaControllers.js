@@ -20,7 +20,6 @@ class PlanetasController {
      * @api {post} api/planetas Adicionar um planeta
      * @apiExample Example usage:
      *     endpoint: http://localhost:3000/api/planetas
-     *
      *     body:
      *     {
      *       "nome": "Naboo",
@@ -29,7 +28,7 @@ class PlanetasController {
      *     }
     */
     add(data) {
-        Planeta.create(data)
+        return Planeta.create(data)
         .then((planeta) => defaultResponse(planeta, HttpStatus.CREATED))
         .catch((err) => errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY));
     };
@@ -38,7 +37,7 @@ class PlanetasController {
      * @api {get} api/planetas Lista Planetas
     */
     planetas() {
-        Planeta.find({})
+        return Planeta.find({})
         .then((planeta) => defaultResponse(planeta))
         .catch((err) => errorResponse(err));
     };
@@ -47,7 +46,7 @@ class PlanetasController {
      * @api {get} api/planetas/findByName/:nome Buscar por nome
      */
     findByName(nome) {
-        Planeta.find({ nome: nome })
+        return Planeta.find({ nome: nome })
         .then((planeta) => defaultResponse(planeta))
         .catch((err) => errorResponse(err));
     };
@@ -56,7 +55,7 @@ class PlanetasController {
      * @api {get} api/planetas/:id Buscar por ID
      */
     findById(_id) {
-        Planeta.findOne({_id: _id})
+        return Planeta.findOne({_id: _id})
         .then((planeta) => defaultResponse(planeta))
         .catch((err) => errorResponse(err));
     };
@@ -65,7 +64,7 @@ class PlanetasController {
      * @api {delete} api/planetas/:id Deletar por ID
      */
     remove(_id) {
-        Planeta.deleteOne({_id: _id})
+        return Planeta.deleteOne({_id: _id})
         .then((planeta) => defaultResponse(planeta))
         .catch((err) => errorResponse(err));
     };
