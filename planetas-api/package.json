@@ -4,8 +4,9 @@
   "description": "Game Star Wars",
   "main": "src/loader.js",
   "scripts": {
-    "dev": "nodemon",
-    "production": "pm2 start src/loader.js --name planeta-api"
+    "dev": "./node_modules/.bin/nodemon -L src/loader.js",
+    "prd": "node ./src/loader.js",
+    "start": "npm run prd"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,6 @@
     "express-validator": "^5.3.0",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.5",
-    "pm2": "^3.0.2",
     "request": "^2.87.0"
   }
 }

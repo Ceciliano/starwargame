@@ -1,4 +1,4 @@
 {
   "PORT": 3000,
-  "URI_MONGODB": "mongodb://mongo/planeta-api"
+  "URI_MONGODB": "mongodb://localhost:27017/planeta-api-dev"
 }

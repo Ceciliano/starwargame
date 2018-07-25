@@ -5,7 +5,7 @@ networks:
   redis:
 services:
   mongo:
-    image: mongo:3.4
+    image: mongo:4.0
     networks:
       - banco
   redis:
@@ -13,8 +13,6 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     networks:
       - redis
-    volumes:
-      - redis-data:/data
   api-avaliacao:
     image: node:8.1
     volumes:
@@ -29,4 +27,5 @@ services:
       - banco
       - redis
     depends_on:
-      - mongo      
+      - mongo 
+      - redis     

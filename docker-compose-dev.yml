@@ -5,7 +5,7 @@ networks:
   redis:
 services:
   mongo:
-    image: mongo:3.4
+    image: mongo:4.0
     networks:
       - banco
     ports:
@@ -15,8 +15,6 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     networks:
       - redis
-    volumes:
-      - redis-data:/data
   api-avaliacao:
     image: node:8.1
     volumes:
@@ -25,10 +23,11 @@ services:
       - 3000:3000
     environment:
       NODE_ENV: dev
-    command: bash -c "cd /planetas-api && npm i && npm start"
+    command: bash -c "cd /planetas-api && npm i && npm run dev"
     networks:
       - api
       - banco
       - redis
     depends_on:
-      - mongo      
+      - mongo   
+      - redis   
