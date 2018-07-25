@@ -1,4 +1,5 @@
 import server from './config/server';
-require("./config/database");
-require("./config/routes")(server);
+import database from './config/database';
+import routes from './config/routes';
+routes(server);
 

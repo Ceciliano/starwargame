@@ -1,7 +1,7 @@
 import express from 'express';
 import { add, planetas, findByName, findById, remove } from '../service/planetaService';
 
-(server) => {
+export default (server) => {
   const router = express.Router();
   server.use('/api', router);
 
