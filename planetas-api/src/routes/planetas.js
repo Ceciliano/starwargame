@@ -1,10 +1,10 @@
 import express from 'express';
 import PlanetaControllers from '../controllers/PlanetaControllers';
 
-const planetaControllers = new PlanetaControllers();
-
 export default (server) => {
+  const planetaControllers = new PlanetaControllers();
   const router = express.Router();
+
   server.use('/api', router);
 
   router.route('/planetas').get((req, res) => {
@@ -30,13 +30,13 @@ export default (server) => {
   });
 
   router.route('/planetas/:_id').get((req, res) => {
-    planetaControllers.findByName(req.params._id)
+    planetaControllers.findById(req.params._id)
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
       });
   }).delete((req, res) => {
-    planetaControllers.findByName(req.params._id)
+    planetaControllers.remove(req.params._id)
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
