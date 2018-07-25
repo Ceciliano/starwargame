@@ -1,0 +1,23 @@
+version: '3'
+networks:
+  banco:
+  api:
+services:
+  mongo:
+    image: mongo:3.4
+    networks:
+      - banco
+  api-avaliacao:
+    image: node:8.1
+    volumes:
+      - ./planeta-api:/planeta-api
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: prd
+    command: bash -c "cd /planeta-api && npm i && npm start"
+    networks:
+      - api
+      - banco
+    depends_on:
+      - mongo      
