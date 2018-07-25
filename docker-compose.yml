@@ -18,14 +18,15 @@ services:
   api-avaliacao:
     image: node:8.1
     volumes:
-      - ./planeta-api:/planeta-api
+      - ./planetas-api:/planetas-api
     ports:
       - 3000:3000
     environment:
       NODE_ENV: prd
-    command: bash -c "cd /planeta-api && npm i && npm start"
+    command: bash -c "cd /planetas-api && npm i && npm start"
     networks:
       - api
       - banco
+      - redis
     depends_on:
       - mongo      
