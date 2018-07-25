@@ -1,7 +1,18 @@
-import { _ } from 'lodash';
 import request from 'request';
 import config from 'config';
+import HttpStatus from 'http-status';
 import Planeta from '../model/planeta';
+
+const defaultResponse = (data, statusCode = HttpStatus.OK) => ({
+    data,
+    statusCode,
+  });
+  
+const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultResponse({
+    error: message,
+}, statusCode);
+
+class PlanetasController {
 
 /**
  * @api {post} api/planetas Adicionar um planeta
@@ -39,11 +50,11 @@ import Planeta from '../model/planeta';
             "__v": ...
  *      }
  */
-export const add = (req, res) => {
-    Planeta.create(req.body)
-    .then((planeta) => res.status(200).json(_.defaults(planeta)))
-    .catch((err) => res.status(400).json(err));
-};
+    add(data) {
+        Planeta.create(data)
+        .then((planeta) => defaultResponse(planeta, HttpStatus.CREATED))
+        .catch((err) => errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY));
+    };
 
 /**
  * @api {get} api/planetas Lista Planetas
@@ -82,11 +93,11 @@ export const add = (req, res) => {
       ]
  *
  */
-export const planetas = (req, res) => {
-    Planeta.find({})
-    .then((planeta) => res.status(200).json(_.defaults(planeta)))
-    .catch((err) => res.status(400).json(err));
-};
+    planetas() {
+        Planeta.find({})
+        .then((planeta) => defaultResponse(planeta))
+        .catch((err) => errorResponse(err));
+    };
 
 /**
  * @api {get} api/planetas/findByName/:nome Buscar por nome
@@ -115,11 +126,11 @@ export const planetas = (req, res) => {
  *    ]
  *
  */
-export const findByName = (req, res) => {
-    Planeta.find({ nome: req.params.nome })
-    .then((planeta) => res.status(200).json(_.defaults(planeta)))
-    .catch((err) => res.status(400).json(err));
-};
+    findByName(nome) {
+        Planeta.find({ nome: nome })
+        .then((planeta) => defaultResponse(planeta))
+        .catch((err) => errorResponse(err));
+    };
 
 /**
  * @api {get} api/planetas/:id Buscar por ID
@@ -145,11 +156,11 @@ export const findByName = (req, res) => {
             "__v": 0
  *      }
  */
-export const findById = (req, res) => {
-    Planeta.findOne({_id: req.params._id})
-    .then((planeta) => res.status(200).json(_.defaults(planeta)))
-    .catch((err) => res.status(400).json(err));
-};
+    findById(_id) {
+        Planeta.findOne({_id: _id})
+        .then((planeta) => defaultResponse(planeta))
+        .catch((err) => errorResponse(err));
+    };
 
 /**
  * @api {delete} api/planetas/:id Deletar por ID
@@ -168,8 +179,9 @@ export const findById = (req, res) => {
  *    ]
  *
  */
-export const remove = (req, res) => {
-    Planeta.deleteOne({_id: req.params._id})
-    .then((planeta) => res.status(200).json(_.defaults(planeta)))
-    .catch((err) => res.status(400).json(err));
-};
+    remove(_id) {
+        Planeta.deleteOne({_id: _id})
+        .then((planeta) => defaultResponse(planeta))
+        .catch((err) => errorResponse(err));
+    };
+}
