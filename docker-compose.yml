@@ -2,11 +2,19 @@ version: '3'
 networks:
   banco:
   api:
+  redis:
 services:
   mongo:
     image: mongo:3.4
     networks:
       - banco
+  redis:
+    image: redis:4.0.5-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    networks:
+      - redis
+    volumes:
+      - redis-data:/data
   api-avaliacao:
     image: node:8.1
     volumes:
