@@ -13,38 +13,19 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
 }, statusCode);
 
 class PlanetasController {
-    constructor() {
-    };
-
-    /**
-     * @api {post} api/planetas Adicionar um planeta
-     * @apiExample Example usage:
-     *     endpoint: http://localhost:3000/api/planetas
-     *     body:
-     *     {
-     *       "nome": "Naboo",
-     *       "clima": "Frio",
-     *       "terreno": "Árido"
-     *     }
-    */
+    
     add(data) {
         return Planeta.create(data)
         .then((planeta) => defaultResponse(planeta, HttpStatus.CREATED))
         .catch((err) => errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY));
     };
 
-    /**
-     * @api {get} api/planetas Lista Planetas
-    */
     planetas() {
         return Planeta.find({})
         .then((planeta) => defaultResponse(planeta))
         .catch((err) => errorResponse(err));
     };
 
-    /**
-     * @api {get} api/planetas/findByName/:nome Buscar por nome
-     */
     findByName(nome) {
         return Planeta.find({ nome: nome })
         .then((planeta) => defaultResponse(planeta))

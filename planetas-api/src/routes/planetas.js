@@ -7,6 +7,18 @@ export default (server) => {
 
   server.use('/api', router);
 
+  /**
+    * @api {get} api/planetas Lista Planetas
+    * @api {post} api/planetas Adicionar um planeta
+    * @apiExample Example usage:
+    *     endpoint: http://localhost:3000/api/planetas
+    *     body:
+    *     {
+    *       "nome": "Naboo",
+    *       "clima": "Frio",
+    *       "terreno": "Árido"
+    *     }
+  */ 
   router.route('/planetas').get((req, res) => {
     planetaControllers.planetas()
       .then(response => {
@@ -21,6 +33,9 @@ export default (server) => {
       });
   });
 
+  /**
+    * @api {get} api/planetas/findByName/:nome Buscar por nome
+  */
   router.route('/planetas/findByName/:nome').get((req, res) => {
     planetaControllers.findByName(req.params.nome)
       .then(response => {
@@ -29,6 +44,10 @@ export default (server) => {
       });
   });
 
+  /**
+    * @api {get} api/planetas/:id Buscar por ID
+    * @api {delete} api/planetas/:id Deletar por ID
+  */
   router.route('/planetas/:_id').get((req, res) => {
     planetaControllers.findById(req.params._id)
       .then(response => {
