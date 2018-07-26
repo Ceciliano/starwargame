@@ -2,53 +2,103 @@ import request from 'request';
 import config from 'config';
 import HttpStatus from 'http-status';
 import Planeta from '../model/planeta';
+import redis from 'redis';
+
+const client = redis.createClient({
+    //reconnecting with built in error
+    retry_strategy: function (options) {
+        if (options.error && options.error.code === 'ECONNREFUSED') {
+            return new Error('The server refused the connection');
+        }
+        if (options.total_retry_time > 1000 * 60 * 60) {
+            return new Error('Retry time exhausted');
+        }
+        if (options.attempt > 10) {
+            return undefined;
+        }
+        return Math.min(options.attempt * 100, 3000);
+    }
+});
+
+const todayEnd = parseInt(new Date().setHours(23, 59, 59, 999)/1000);
 
 const defaultResponse = (data, statusCode = HttpStatus.OK) => ({
     data,
     statusCode,
-  });
+});
   
 const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultResponse({
     error: message,
 }, statusCode);
 
+const calculatoMovies = (planeta) => {
+
+    client.get(`${planeta.nome}`, function (err, reply) {
+        if (reply) {
+            console.log('redis');
+            planeta.filmes = reply;
+            console.log(reply);
+        } else {
+            
+            request(`${config.URL_SWAPI}?search=${planeta.nome}`, { json: true }, (err, response, json) => {
+                if (err)
+                    throw err;
+                planeta.filmes = json.results[0].films.length;
+
+                client.set(`${planeta.nome}`, planeta.filmes);
+                client.expire(`${planeta.nome}`, todayEnd);
+            });
+        }
+    });
+
+};
+
 class PlanetasController {
     
     add(data) {
         return Planeta.create(data)
-        .then((planeta) => defaultResponse(planeta, HttpStatus.CREATED))
+        .then((planeta) => {
+            calculatoMovies(planeta);
+            return defaultResponse(planeta, HttpStatus.CREATED);
+        })
         .catch((err) => errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY));
-    };
+    }
 
     planetas() {
         return Planeta.find({})
-        .then((planeta) => defaultResponse(planeta))
+        .then((planetas) => defaultResponse(planetas))
         .catch((err) => errorResponse(err));
-    };
+    }
 
     findByName(nome) {
-        return Planeta.find({ nome: nome })
-        .then((planeta) => defaultResponse(planeta))
+        return Planeta.findOne({ nome: nome })
+        .then((planeta) => {
+            calculatoMovies(planeta);
+            return defaultResponse(planeta)
+        })        
         .catch((err) => errorResponse(err));
-    };
+    }
 
-    /**
-     * @api {get} api/planetas/:id Buscar por ID
-     */
     findById(_id) {
         return Planeta.findOne({_id: _id})
-        .then((planeta) => defaultResponse(planeta))
+        .then(planeta => {
+            calculatoMovies(planeta);
+            return defaultResponse(planeta);
+        })
         .catch((err) => errorResponse(err));
-    };
+    }
 
-    /**
-     * @api {delete} api/planetas/:id Deletar por ID
-     */
     remove(_id) {
         return Planeta.deleteOne({_id: _id})
-        .then((planeta) => defaultResponse(planeta))
+        .then((data) => {
+            if(data.n > 0){
+                return defaultResponse({message:'Excluido com sucesso.'});
+            } else {
+                return defaultResponse({message:'Registro não encontrado.'});
+            }
+        })
         .catch((err) => errorResponse(err));
-    };
+    }
 }
 
 export default PlanetasController;
