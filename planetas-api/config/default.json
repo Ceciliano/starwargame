@@ -1,5 +1,6 @@
 {
   "PORT": 3000,
   "URI_MONGODB": "mongodb://localhost:27017/planeta-api-dev",
-  "URL_SWAPI": "https://swapi.co/api/planets/"
+  "URL_SWAPI": "https://swapi.co/api/planets/",
+  "URL_REDIS": "redis://localhost:6379/planeta-api-dev"
 }

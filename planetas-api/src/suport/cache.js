@@ -3,7 +3,8 @@ import request from 'request';
 import {clone} from './planetaUtil';
 import Redis from 'ioredis';
 
-let redis = new Redis();
+let redis = new Redis(config.URL_REDIS);
+
 const todayEnd = parseInt(new Date().setHours(23, 59, 59, 999)/1000);
 
 export const calculatoMovies = planeta =>{
@@ -15,7 +16,7 @@ export const calculatoMovies = planeta =>{
             if (result) {
                 console.log(`redis:${planeta.nome} = ${result}`);
                 planeta.filmes = result;
-                
+
                 resolve(planeta);
             } else {
                 request(`${config.URL_SWAPI}?search=${planeta.nome}`, { json: true }, (err, response, json) => {
