@@ -7,10 +7,16 @@ A **planetas-api** recebe dados dos planetas manualmente grava no banco Mongo e 
 
 ## Pré-requisitos
 
-What things you need to install the software and how to install them
+O que você precisa para instalar o software e instalá-lo
 
 ```
-Docker - Se preferir
+Docker para execução com docker-compose up
+---------
+Para rodar local 
+
+Nodejs
+Redis
+Mongo
 ```
 
 ## Installing
@@ -35,9 +41,9 @@ Give an example
 
 * **Rafael Braga** - *Desafio* - [Ceciliano](https://github.com/Ceciliano)
 
-## License
+## Licença
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Este projeto está licenciado sob a licença MIT - consulte o arquivo [LICENSE.md](LICENSE.md) para obter detalhes
 
 ## Agradecimentos
 
