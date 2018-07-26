@@ -10,15 +10,13 @@ A **planetas-api** recebe dados dos planetas manualmente grava no banco Mongo e 
 
 O que você precisa para instalar o software e instalá-lo
 
-```
+
 Execução com docker-compose up
-
+```
 -Docker - https://www.docker.com/
-
----------
-
+```
 Para rodar local 
-
+```
 -Nodejs - https://nodejs.org/en/
 -Redis - https://redis.io/
 -Mongo - https://www.mongodb.com/download-center#enterprise
@@ -33,7 +31,13 @@ O Docker vai baixar todas as dependências, realizar build dos pacotes, e subir 
 ```sh
 $ sudo docker-compose up -d
 ```
-
+Para rodar local:
+```sh
+$ sudo mongod
+$ sudo redis-server
+$ sudo npm i
+$ sudo npm start
+```
 ## Testes
 
 ```
