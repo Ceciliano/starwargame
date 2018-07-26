@@ -8,7 +8,7 @@ class PlanetasController {
     add(data) {
         return Planeta.create(data)
         .then((planeta) => calculatoMovies(planeta))
-        .then((planeta) => defaultResponse(planeta))
+        .then((planeta) => defaultResponse(planeta, HttpStatus.CREATED))
         .catch((err) => errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY));
     }
 
