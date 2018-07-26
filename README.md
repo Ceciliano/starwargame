@@ -10,15 +10,17 @@ A **planetas-api** recebe dados dos planetas manualmente grava no banco Mongo e 
 O que você precisa para instalar o software e instalá-lo
 
 ```
-Docker - execução com docker-compose up
+Execução com docker-compose up
+
+-Docker 
 
 ---------
 
 Para rodar local 
 
-Nodejs
-Redis
-Mongo
+-Nodejs
+-Redis
+-Mongo
 ```
 
 ### Testes
@@ -33,7 +35,7 @@ Give an example
 ## Construído com
 
 * Nodejs
-* Redis - Para guardar cache da quantidades dos filmes.
+* Redis - Para guardar cache das quantidades dos filmes.
 * Mongo
 
 ## Autor
