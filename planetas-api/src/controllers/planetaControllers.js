@@ -6,7 +6,7 @@ import redis from 'redis';
 
 const client = redis.createClient({
     //reconnecting with built in error
-    retry_strategy: function (options) {
+    retry_strategy: (options) => {
         if (options.error && options.error.code === 'ECONNREFUSED') {
             return new Error('The server refused the connection');
         }
@@ -32,59 +32,56 @@ const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => defaultR
 }, statusCode);
 
 const calculatoMovies = (planeta) => {
-
+    
     client.get(`${planeta.nome}`, function (err, reply) {
         if (reply) {
-            console.log('redis');
-            planeta.filmes = reply;
-            console.log(reply);
+            console.log(`redis:${planeta.nome} = ${reply}`);
         } else {
-            
             request(`${config.URL_SWAPI}?search=${planeta.nome}`, { json: true }, (err, response, json) => {
-                if (err)
-                    throw err;
+                if (err) throw err;
+
                 planeta.filmes = json.results[0].films.length;
 
-                client.set(`${planeta.nome}`, planeta.filmes);
+                client.set(`${planeta.nome}`,  planeta.filmes);
                 client.expire(`${planeta.nome}`, todayEnd);
             });
         }
     });
 
+    return {planeta, filme:2};
 };
 
 class PlanetasController {
     
     add(data) {
         return Planeta.create(data)
-        .then((planeta) => {
-            calculatoMovies(planeta);
-            return defaultResponse(planeta, HttpStatus.CREATED);
-        })
+        .then((planeta) => defaultResponse(calculatoMovies(planeta), HttpStatus.CREATED))
         .catch((err) => errorResponse(err, HttpStatus.UNPROCESSABLE_ENTITY));
     }
 
     planetas() {
         return Planeta.find({})
-        .then((planetas) => defaultResponse(planetas))
+        .then((planetas) => {
+            var list = [];
+
+            planetas.forEach(data => {
+                list.push(calculatoMovies(data));
+            });
+
+            return defaultResponse(list);
+        })
         .catch((err) => errorResponse(err));
     }
 
     findByName(nome) {
         return Planeta.findOne({ nome: nome })
-        .then((planeta) => {
-            calculatoMovies(planeta);
-            return defaultResponse(planeta)
-        })        
+        .then((planeta) => defaultResponse(calculatoMovies(planeta)))        
         .catch((err) => errorResponse(err));
     }
 
     findById(_id) {
         return Planeta.findOne({_id: _id})
-        .then(planeta => {
-            calculatoMovies(planeta);
-            return defaultResponse(planeta);
-        })
+        .then(planeta => defaultResponse(calculatoMovies(planeta)))
         .catch((err) => errorResponse(err));
     }
 
