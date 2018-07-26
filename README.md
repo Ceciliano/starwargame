@@ -1,48 +1,22 @@
 # STARWARGAME
 
-## Getting Started
+Desenvolvido para o desafio de uma vaga, consiste em 1 microsserviços Docker para um jogo com algumas informações da franquia StarWar. Foram criados utilizando NodeJs com framework Express, ES6, MongoDb, Redis e orquestrados via Docker Compose.
 
-### Prerequisities
+## Sobre a api
+A **planetas-api** recebe dados dos planetas manualmente grava no banco Mongo e depois calcula a quantidade de aparições em filmes obtidas pela API pública do Star Wars:  https://swapi.co/ 
+
+## Pré-requisitos
 
 What things you need to install the software and how to install them
 
 ```
-Give examples
+Docker - Se preferir
 ```
 
-### Installing
+## Installing
 
-A step by step series of examples that tell you have to get a development env running
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+### Testes
 
 ```
 Give an example
@@ -50,32 +24,21 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
 
-## Built With
+## Construído com
 
-* Dropwizard - Bla bla bla
-* Maven - Maybe
-* Atom - ergaerga
+* Nodejs
+* Redis - Para guardar cache da quantidades dos filmes.
+* Mongo
 
-## Contributing
+## Autor
 
-Please read [CONTRIBUTING.md]
-
-## Versioning
-
-
-## Authors
-
-* **Rafael Braga** - *Initial work* - [Ceciliano](https://github.com/Ceciliano)
-
+* **Rafael Braga** - *Desafio* - [Ceciliano](https://github.com/Ceciliano)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## Agradecimentos
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* My Wife
