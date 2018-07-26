@@ -1,5 +1,5 @@
 import server from './config/server';
 import database from './config/database';
-import planetas from './routes/planetas';
-planetas(server);
+import planeta from './routes/planeta';
+planeta(server);
 
