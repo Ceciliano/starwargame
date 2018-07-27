@@ -74,6 +74,7 @@ Percebi alguns pontos que precisam ser melhorados na api:
 * Quando o planeta é solicitado e não é encontrado no cache(Redis), o serviço salva no cache, conforme requisitado, que expira em 24 horas, podendo ser incluido um schedule para atualizar os planetas conforme a necessidade.
 * Incluir login e senha no **Mongo** e no **Redis**.
 * Incluir mais testes (Testar a chamada do serviço swapi.co, testar a camada dos router, testar a inclusão no cache).
+* Incluir Nyc para estátisticas de cobertura de teste.
 
 ## Construído com
 
@@ -87,7 +88,6 @@ Percebi alguns pontos que precisam ser melhorados na api:
 * Config - Para diferenciar ambientes
 * Request - Para Consumir serviços
 * Ioredis - Para orquestrar o Redis - https://github.com/luin/ioredis
-* Nyc - Para estátisticas de cobertura de teste
 
 ## Autor
 

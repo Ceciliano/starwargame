@@ -19,7 +19,6 @@ describe('Testes Unitários lib utils.', () => {
         }  
         
     });
-    
 
     it("Deve criar um objeto response.", done => {
         let response = planetaUtil.defaultResponse(pessoa);

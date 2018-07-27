@@ -23,7 +23,7 @@ services:
       - 3000:3000
     environment:
       NODE_ENV: test
-    command: bash -c "cd /planetas-api && npm i && npm run test:coverage"
+    command: bash -c "cd /planetas-api && npm i && npm run test"
     networks:
       - api
       - banco
