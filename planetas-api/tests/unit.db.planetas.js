@@ -43,7 +43,7 @@ describe('Testes Unitários de database de Planetas.', () => {
         it("Deve retornar erro campos obrigatorios.", done => {
             planetaControllers.add(planetaIncompleto)
             .then(response => {
-                response.data.error.should.have.property('code', 11000);
+                response.data.error.should.have.property('_message', 'Planeta validation failed');
                 done();
             }).catch(err => done(err));
         });
