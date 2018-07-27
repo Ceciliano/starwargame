@@ -40,13 +40,18 @@ $ sudo npm start
 ```
 ## Testes
 
+Via Docker
+```sh
+$ sudo docker-compose up -f ./docker-compose-test.yml up
 ```
-Give an example
+Local
+```sh
+$ sudo npm run test
 ```
 ## Endpoints das APIs
 
-- Default: http://localhost:8080/
-- POST de Planeta: http://localhost:8080/api/planetas
+- Default: http://localhost:3000/
+- POST de Planeta: http://localhost:3000/api/planetas
   - Exemplo de CADASTRO PLANETAS:
   ```sh
   { 'nome': 'Naboo', 
@@ -54,13 +59,13 @@ Give an example
     'terreno': 'Árido' 
   }
   ```
-- GET Listar Planetas: http://localhost:8080/api/planetas
+- GET Listar Planetas: http://localhost:3000/api/planetas
 
-- GET Buscar Planeta por id: http://localhost:8080/api/planetas/:id
+- GET Buscar Planeta por id: http://localhost:3000/api/planetas/:id
 
-- GET Buscar Planeta por nome: http://localhost:8080/api/planetas/findByName/:nome
+- GET Buscar Planeta por nome: http://localhost:3000/api/planetas/findByName/:nome
 
-- DELETE Deletar Planeta: http://localhost:8080/api/planetas/:id
+- DELETE Deletar Planeta: http://localhost:3000/api/planetas/:id
 
 ## Melhorias futuras
 
