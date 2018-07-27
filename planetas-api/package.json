@@ -8,7 +8,7 @@
     "prd": "babel-node ./src/loader.js",
     "start": "npm run prd",
     "test": "./node_modules/.bin/mocha --timeout 40000 tests/**/unit.*.js --require babel-register",
-    "test:coverage": "nyc npm test"
+    "test:coverage": "./node_modules/.bin/nyc npm test"
   },
   "nyc": {
     "reporter": [

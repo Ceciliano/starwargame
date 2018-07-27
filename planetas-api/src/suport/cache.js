@@ -14,9 +14,8 @@ export const calculatoMovies = planeta =>{
 
         redis.get(`${planeta.nome}`).then( result => {
             if (result) {
-                console.log(`redis:${planeta.nome} = ${result}`);
                 planeta.filmes = result;
-
+                
                 resolve(planeta);
             } else {
                 request(`${config.URL_SWAPI}?search=${planeta.nome}`, { json: true }, (err, response, json) => {
