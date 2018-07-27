@@ -9,6 +9,6 @@ export const errorResponse = (message, statusCode = HttpStatus.BAD_REQUEST) => d
     error: message,
 }, statusCode);
 
-export function clone(data){
+export const clone = (data) => {
     return JSON.parse(JSON.stringify(data));
 };

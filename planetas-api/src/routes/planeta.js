@@ -1,8 +1,7 @@
 import express from 'express';
-import PlanetaControllers from '../controllers/PlanetaControllers';
+import {planetas, add, findByName, findById, remove} from '../controllers/PlanetaControllers';
 
 export default (server) => {
-  const planetaControllers = new PlanetaControllers();
   const router = express.Router();
 
   server.use('/api', router);
@@ -20,13 +19,13 @@ export default (server) => {
     *     }
   */ 
   router.route('/planetas').get((req, res) => {
-    planetaControllers.planetas()
+    planetas()
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
       });
   }).post((req, res) => {
-    planetaControllers.add(req.body)
+    add(req.body)
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
@@ -37,7 +36,7 @@ export default (server) => {
     * @api {get} api/planetas/findByName/:nome Buscar por nome
   */
   router.route('/planetas/findByName/:nome').get((req, res) => {
-    planetaControllers.findByName(req.params.nome)
+    findByName(req.params.nome)
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
@@ -49,13 +48,13 @@ export default (server) => {
     * @api {delete} api/planetas/:id Deletar por ID
   */
   router.route('/planetas/:_id').get((req, res) => {
-    planetaControllers.findById(req.params._id)
+    findById(req.params._id)
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
       });
   }).delete((req, res) => {
-    planetaControllers.remove(req.params._id)
+    remove(req.params._id)
       .then(response => {
         res.status(response.statusCode);
         res.json(response.data);
