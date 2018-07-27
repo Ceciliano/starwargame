@@ -42,7 +42,7 @@ $ sudo npm start
 
 Via Docker
 ```sh
-$ sudo docker-compose up -f ./docker-compose-test.yml up
+$ sudo docker-compose -f ./docker-compose-test.yml up
 ```
 Local
 ```sh
