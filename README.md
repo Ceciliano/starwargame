@@ -1,21 +1,21 @@
 # STARWARGAME
 
-Desenvolvido para o desafio de uma vaga, consiste em 1 microsserviços Docker para um jogo com algumas informações da franquia StarWar. Foi criado utilizando NodeJs com framework Express, ES6, MongoDb, Redis e orquestrados via Docker Compose.
+Desenvolvido para o desafio starwargame, este projeto consiste em 1 microsserviço Docker para um jogo com algumas informações da franquia StarWar. Foi criado utilizando NodeJs com framework Express, ES6, MongoDb, Redis e orquestrados via Docker Compose.
 
 ## Sobre a api
 
-A **planetas-api** recebe dados dos planetas manualmente grava no banco Mongo e depois calcula a quantidade de aparições em filmes obtidas pela API pública do Star Wars:  https://swapi.co/ 
+A **planetas-api** recebe dados dos planetas manualmente, grava no banco Mongo e depois calcula a quantidade de aparições em filmes obtidas pela API pública do Star Wars:  https://swapi.co/ 
 
 ## Pré-requisitos
 
-O que você precisa para instalar o software e instalá-lo
+O que você precisa para instalar o software e instalá-lo:
 
 
 Execução com docker-compose up
 ```
 -Docker - https://www.docker.com/
 ```
-Para rodar local 
+Para rodar local:
 ```
 -Nodejs - https://nodejs.org/en/
 -Redis - https://redis.io/
@@ -27,7 +27,7 @@ Após clone, executar o comando:
 ```sh
 $ cd starwargame
 ```
-O Docker vai baixar todas as dependências, realizar build dos pacotes, e subir todos os containers com a aplicação:
+O Docker vai baixar todas as dependências, realizar build dos pacotes e subir todos os containers com a aplicação:
 ```sh
 $ sudo docker-compose up -d
 ```
@@ -69,9 +69,9 @@ $ sudo npm run test
 
 ## Melhorias futuras
 
-Percebi alguns pontos que precisa ser melhorados na api:
+Percebi alguns pontos que precisam ser melhorados na api:
 * JWT para colocar uma segurança nos serviços.
-* Quando o planeta é solicitado no serviço e não é encontrado no cache(Redis) o serviço salva ele no cache conforme reqisitado que tem a expiração em 24 horas, pode ser incluido um schedule para atualizar os planetas conforme a necessidade.
+* Quando o planeta é solicitado e não é encontrado no cache(Redis), o serviço salva no cache, conforme requisitado, que expira em 24 horas, podendo ser incluido um schedule para atualizar os planetas conforme a necessidade.
 * Incluir login e senha no **Mongo** e no **Redis**.
 
 ## Construído com
