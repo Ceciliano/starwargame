@@ -7,8 +7,9 @@
     "dev": "./node_modules/.bin/nodemon -L src/loader.js --exec babel-node",
     "prd": "babel-node ./src/loader.js",
     "start": "npm run prd",
-    "test": "./node_modules/.bin/mocha --timeout 40000 tests/**/unit.*.js --require babel-register",
-    "test:coverage": "./node_modules/.bin/nyc npm test"
+    "mocha": "./node_modules/.bin/mocha --timeout 40000 tests/**/unit.*.js --require babel-register",
+    "test": "set NODE_ENV=test && npm run mocha",
+    "test:coverage": "./node_modules/.bin/nyc npm mocha"
   },
   "nyc": {
     "reporter": [

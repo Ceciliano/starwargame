@@ -6,7 +6,6 @@ import Planeta from '../src/model/planeta';
 
 describe('Testes Unitários de database de Planetas.', () => {
     const planeta = { nome: 'Naboo', clima: 'Frio', terreno: 'Árido' };
-
     const planetaIncompleto = { };
 
     before(done => { //Before test we empty the database
