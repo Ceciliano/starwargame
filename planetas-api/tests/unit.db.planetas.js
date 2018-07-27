@@ -15,11 +15,11 @@ describe('Testes Unitários de database de Planetas.', () => {
         });
     });
 
-    // after(done => { //After each test we empty the database
-    //     Planeta.remove({}, () => {
-    //         done();
-    //     });
-    // });
+    after(done => { //After test we empty the database
+        Planeta.remove({}, () => {
+            done();
+        });
+    });
 
     describe('Adicionar Planetas', () => {
         it("Deve adicionar um Planeta.", done => {

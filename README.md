@@ -45,12 +45,29 @@ Give an example
 ```
 ## Endpoints das APIs
 
+- Default: http://localhost:8080/
+- POST de Planeta: http://localhost:8080/api/planetas
+  - Exemplo de CADASTRO PLANETAS:
+  ```sh
+  { 'nome': 'Naboo', 
+    'clima': 'Frio', 
+    'terreno': 'Árido' 
+  }
+  ```
+- GET Listar Planetas: http://localhost:8080/api/planetas
+
+- GET Buscar Planeta por id: http://localhost:8080/api/planetas/:id
+
+- GET Buscar Planeta por nome: http://localhost:8080/api/planetas/findByName/:nome
+
+- DELETE Deletar Planeta: http://localhost:8080/api/planetas/:id
+
 ## Melhorias futuras
 
 Percebi alguns pontos que precisa ser melhorados na api:
--JWT para colocar uma segurança nos serviços.
--Quando o planeta é solicitado no serviço e não é encontrado no cache(Redis) o serviço salva ele no cache conforme reqisitado que tem a expiração em 24 horas, pode ser incluido um schedule para atualizar os planetas conforme a necessidade.
--Incluir login e senha no **Mongo** e no **Redis**.
+* JWT para colocar uma segurança nos serviços.
+* Quando o planeta é solicitado no serviço e não é encontrado no cache(Redis) o serviço salva ele no cache conforme reqisitado que tem a expiração em 24 horas, pode ser incluido um schedule para atualizar os planetas conforme a necessidade.
+* Incluir login e senha no **Mongo** e no **Redis**.
 
 ## Construído com
 
