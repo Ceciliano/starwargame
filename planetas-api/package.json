@@ -6,7 +6,18 @@
   "scripts": {
     "dev": "./node_modules/.bin/nodemon -L src/loader.js --exec babel-node",
     "prd": "babel-node ./src/loader.js",
-    "start": "npm run prd"
+    "start": "npm run prd",
+    "test": "./node_modules/.bin/mocha --timeout 40000 tests/**/unit.*.js --require babel-register",
+    "test:coverage": "nyc npm test"
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
   },
   "repository": {
     "type": "git",
@@ -20,7 +31,11 @@
   "author": "Rafael Braga <rafaelp.ceciliano@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3",
+    "nyc": "^12.0.2",
+    "should": "^13.2.2"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",

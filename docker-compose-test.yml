@@ -1,0 +1,33 @@
+version: '3'
+networks:
+  banco:
+  api:
+  redis:
+services:
+  mongo:
+    image: mongo:4.0
+    networks:
+      - banco
+    ports:
+      - 27017:27017
+  redis:
+    image: redis:4.0.5-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    networks:
+      - redis
+  api-avaliacao:
+    image: node:8.11.3
+    volumes:
+      - ./planetas-api:/planetas-api
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: test
+    command: bash -c "cd /planetas-api && npm i && npm run test"
+    networks:
+      - api
+      - banco
+      - redis
+    depends_on:
+      - mongo   
+      - redis   

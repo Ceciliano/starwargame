@@ -43,11 +43,13 @@ $ sudo npm start
 ```
 Give an example
 ```
+## Endpoints das APIs
+
 ## Melhorias futuras
 
 Percebi alguns pontos que precisa ser melhorados na api:
 -JWT para colocar uma segurança nos serviços.
--Hoje salva no cache as quantidades de filmes quando solicito um planeta que expira em 24 horas, pode ser incluido um schedule para atualizar os planetas conforme a necessidade.
+-Quando o planeta é solicitado no serviço e não é encontrado no cache(Redis) o serviço salva ele no cache conforme reqisitado que tem a expiração em 24 horas, pode ser incluido um schedule para atualizar os planetas conforme a necessidade.
 -Incluir login e senha no **Mongo** e no **Redis**.
 
 ## Construído com
