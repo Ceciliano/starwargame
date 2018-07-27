@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 const planetaSchema = new mongoose.Schema({
-   nome:{type: String, require: true, unique: true},
-   clima:{type: String, require: true},
-   terreno:{type: String, require: true},
+   nome:{type: String, required: true, unique: true},
+   clima:{type: String, required: true},
+   terreno:{type: String, required: true},
    createAt: {type: Date, default: Date.now}
 })
 
